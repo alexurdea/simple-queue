@@ -9,8 +9,11 @@ var Queue = module.exports = function (max) {
 
   this.on('available', function () {
 
-    if (this.from.length) this.exec.push(this.from.shift());
-
+    if (this.from.length) {
+      this.exec.push(this.from.shift());
+    } else if (!this.exec.length) {
+      this.emit('empty');
+    }
     if (!this.exec.length) return;
 
     this.runFn(this.exec.shift(), function () {
