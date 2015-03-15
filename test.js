@@ -12,7 +12,7 @@ var q = new Queue(10);
 c = 0;
 q.run(function (x, cb) {
   c++;
-  console.log(x);
+  console.log(q.exec);
   setTimeout(function () {
     cb();
   }, 10);
