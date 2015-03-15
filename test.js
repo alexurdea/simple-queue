@@ -1,7 +1,6 @@
 var assert = require('assert');
 var Queue = require('./index');
 
-// Tests
 var c;
 var from = [];
 for(var i=0; i<100; i++) {
@@ -17,8 +16,11 @@ q.run(function (x, cb) {
   console.log(x);
   setTimeout(function () {
     cb();
-  }, 100);
+  }, 10);
+});
+
+q.on('empty', function () {
+  assert.equal(c, 100);
 });
 
 q.start(from);
-q.start(['a', 'b']);
